@@ -30,7 +30,7 @@ def getEmotion():
     y_prob = model.predict(data_test)
     for n, prediction in enumerate(y_prob):
         pred = y_prob.argmax(axis=-1)[n]
-        respObj = {'data': {'emotion': str(pred)}}
+        respObj = {'data': {'emotion': int(pred)}}
 
     return jsonify(respObj)
 
