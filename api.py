@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import logging
 import json
 import pickle
 from tensorflow.keras.models import load_model
@@ -7,6 +8,11 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 MAX_SEQUENCE_LENGTH = 30  # max length of text (words) including padding
 
 app = Flask(__name__)
+
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
 
 
 @app.route('/', methods=['GET'])
@@ -31,8 +37,8 @@ def getEmotion():
     for n, prediction in enumerate(y_prob):
         pred = y_prob.argmax(axis=-1)[n]
         respObj = {'data': {'emotion': int(pred)}}
-    print(input, int(pred))
+    app.logger.info(input, int(pred))
     return jsonify(respObj)
 
 
-# app.run(host='0.0.0.0', port=8080)
+app.run(host='0.0.0.0', port=8080)
