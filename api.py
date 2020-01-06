@@ -31,7 +31,7 @@ def getEmotion():
     for n, prediction in enumerate(y_prob):
         pred = y_prob.argmax(axis=-1)[n]
         respObj = {'data': {'emotion': int(pred)}}
-
+    print(input, int(pred))
     return jsonify(respObj)
 
 
