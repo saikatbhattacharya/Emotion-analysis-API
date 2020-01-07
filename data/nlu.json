@@ -1,0 +1,81 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "intent": "track_order",
+        "text": "where is my order"
+      },
+      {
+        "intent": "track_order",
+        "text": "i want to track my order"
+      },
+      {
+        "intent": "track_order",
+        "text": "could you please tell me the order status"
+      },
+      {
+        "intent": "track_order",
+        "text": "is my order out for delivery"
+      },
+      {
+        "intent": "track_order",
+        "text": "when will my order be delivered"
+      },
+      {
+        "intent": "track_order",
+        "text": "what is the eta of my order"
+      },
+      {
+        "intent": "track_order",
+        "text": "eta of order"
+      },
+      {
+        "intent": "track_order",
+        "text": "when will i get my order"
+      },
+      {
+        "intent": "cancel_order",
+        "text": "please cancel my order"
+      },
+      {
+        "intent": "cancel_order",
+        "text": "i do not want the order anymore"
+      },
+      {
+        "intent": "cancel_order",
+        "text": "want to cancel my order"
+      },
+      {
+        "intent": "cancel_order",
+        "text": "do not deliver my order"
+      },
+      {
+        "intent": "cancel_order",
+        "text": "cancel it"
+      },
+      {
+        "intent": "new_order",
+        "text": "i want to place a new order"
+      },
+      {
+        "intent": "new_order",
+        "text": "new order"
+      },
+      {
+        "intent": "new_order",
+        "text": "order some food"
+      },
+      {
+        "intent": "new_order",
+        "text": "want some food"
+      },
+      {
+        "intent": "new_order",
+        "text": "fresh order"
+      }
+    ],
+    "regex_features": [],
+    "lookup_tables": [],
+    "entity_synonyms": []
+  }
+}

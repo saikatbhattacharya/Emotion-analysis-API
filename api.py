@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 import logging
+import requests
 import json
 import pickle
 from tensorflow.keras.models import load_model
@@ -22,11 +23,12 @@ def home():
 
 @app.route('/getEmotion', methods=['POST'])
 def getEmotion():
+    print(request.data)
     input = json.loads(request.data.decode('utf-8'))['text']
     with open('tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
 
-    model = load_model('model/BalanceNet.h5')
+    model = load_model('models/BalanceNet.h5')
     classes = ["neutral", "happy", "sad", "hate", "anger"]
     sequences_test = tokenizer.texts_to_sequences([input])
     data_int_t = pad_sequences(
@@ -40,6 +42,17 @@ def getEmotion():
     app.logger.info(input)
     app.logger.info(int(pred))
     return jsonify(respObj)
+
+
+@app.route('/getIntent', methods=['POST'])
+def getIntent():
+    input = json.loads(request.data.decode('utf-8'))['text']
+    app.logger.info(input)
+    response = requests.post(
+        'http://localhost:5005/model/parse', json={'text': input})
+    app.logger.info(response.json())
+    # app.logger.info(response)
+    return jsonify(response.json())
 
 
 # app.run(host='0.0.0.0', port=8080)
